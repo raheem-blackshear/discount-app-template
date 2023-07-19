@@ -1,0 +1,62 @@
+<div>
+    <form *ngIf="formResetToggle"  class="form-horizontal" name="typeConsumeInfoForm" #f="ngForm" novalidate
+          (ngSubmit)="f.form.valid ? save() :
+
+           (!typeConsumeName.valid && showErrorAlert('Type Consume name is required'));
+
+           (!typeConsumeValue.valid && showErrorAlert('Type Consume value is required'));
+
+         ">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group has-feedback">
+                    <label class="control-label col-md-2" for="typeConsumeName">{{'typeConsume.Name' | translate}}</label>
+                    <div class="col-md-10" [ngClass]="{'has-success': f.submitted && typeConsumeName.valid, 'has-error' : f.submitted && !typeConsumeName.valid}">
+                        <input  type="text" id="typeConsumeName" name="typeConsumeName" placeholder="Enter type Consume name" class="form-control" [(ngModel)]="typeConsumeEdit.typeConsumeName" #typeConsumeName="ngModel" required minlength="2" maxlength="100" />
+                        <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': typeConsumeName.valid, 'glyphicon-remove' : !typeConsumeName.valid}"></span>
+                        <span *ngIf="showValidationErrors && f.submitted && !typeConsumeName.valid" class="errorMessage roleErrorMessage">
+                            {{'typeConsume.TypeConsumeNameRequired' | translate}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="form-group has-feedback">
+                    <label class="control-label col-md-2" for="typeConsumeValue">{{'typeConsume.Value' | translate}}</label>
+                    <div class="col-md-10" [ngClass]="{'has-success': f.submitted && typeConsumeValue.valid, 'has-error' : f.submitted && !typeConsumeValue.valid}">
+                        <input  type="number" id="typeConsumeValue" name="typeConsumeValue" placeholder="Enter value" class="form-control" [(ngModel)]="typeConsumeEdit.typeConsumeValue"  #typeConsumeValue="ngModel" required minlength="2" maxlength="5"/>
+                        <span *ngIf="showValidationErrors && f.submitted" class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-ok ': typeConsumeValue.valid, 'glyphicon-remove' : !typeConsumeName.valid}"></span>
+                        <span *ngIf="showValidationErrors && f.submitted && !typeConsumeValue.valid" class="errorMessage roleErrorMessage">
+                            {{'typeConsume.TypeConsumeValueRequired' | translate}}
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>    
+        <div *ngIf="!isViewOnly" class="form-group">
+            <div class="col-sm-5">
+                <div *ngIf="isGeneralEditor && isEditMode" class="pull-left">
+                    <div class="checkbox user-enabled">
+                        <label>
+                            <input type="checkbox" name="isActive" [(ngModel)]="typeConsumeEdit.isActive">
+                            {{'typeConsume.Enabled' | translate}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="pull-right">
+                    <button *ngIf="!isEditMode && isGeneralEditor" type="button" (click)="close()" class="btn btn-default"><i class='fa fa-close'></i> {{'typeConsume.Close' | translate}}</button>
+                    <button *ngIf="!isEditMode && !isGeneralEditor" type="button" (click)="edit()" class="btn btn-default"><i class='fa fa-edit'></i> {{'typeConsume.Edit' | translate}}</button>
+                    <button *ngIf="isEditMode" type="button" (click)="cancel()" class="btn btn-danger" [disabled]="isSaving"><i class='fa fa-times'></i> {{'typeConsume.Cancel' | translate}}</button>
+                    <button *ngIf="isEditMode" type="submit" class="btn btn-primary" [disabled]="isSaving">
+                        <i *ngIf="!isSaving" class='fa fa-save'></i><i *ngIf="isSaving" class='fa fa-circle-o-notch fa-spin'></i> {{isSaving ? ('typeConsume.Saving' | translate) : ('typeConsume.Save' | translate)}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <header class="pageHeader">
+        <h3><i class="fa fa-info-circle fa-lg page-caption" aria-hidden="true"></i> {{'pageHeader.Contact' | translate}}</h3>
+    </header>
+    <div [@fadeInOut]>
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Welcome to Discount</h3>               
+            </div>           
+        </div>       
+        <div style="text-align:center">
+            <h1 class="well">
+                Contact Form
+            </h1>
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="form-area">
+                        <form role="form">                            
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name" [(ngModel)]="name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" [(ngModel)]="email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="phone" class="form-control" id="mobile" name="mobile" placeholder="Mobile Number" [(ngModel)]="mobile" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" [(ngModel)]="subject" required>
+                            </div>
+                            <div class="form-group">
+                               <textarea class="form-control" type="textarea" id="message" name="message" placeholder="Message" [(ngModel)]="message" maxlength="140" rows="7"></textarea>
+                            </div>
+                            <button type="button" id="submit" name="submit" class="btn btn-primary pull-right" (click)="save(name, email, mobile, subject, message)">Submit Form</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
